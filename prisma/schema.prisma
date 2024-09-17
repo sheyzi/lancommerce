@@ -1,0 +1,197 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id        String  @id @default(cuid())
+  email     String  @unique
+  firstName String? @map("first_name")
+  lastName  String? @map("last_name")
+
+  role Role @default(USER)
+
+  auth_session Session[]
+  key          Key[]
+
+  orders     Order[]
+  favourites Product[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@index([email, role])
+  @@map("users")
+}
+
+model Session {
+  id             String @id @unique
+  user_id        String
+  active_expires BigInt
+  idle_expires   BigInt
+  user           User   @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@index([user_id])
+  @@map("sessions")
+}
+
+model Key {
+  id              String  @id @unique
+  hashed_password String?
+  user_id         String
+  user            User    @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@index([user_id])
+  @@map("keys")
+}
+
+model Image {
+  id String @id @default(cuid())
+
+  url       String
+  isDefault Boolean @default(false) @map("is_default")
+
+  products Product[]
+  category Category[]
+
+  variant   Variant? @relation(fields: [variantId], references: [id])
+  variantId String?  @map("variant_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("images")
+}
+
+model Category {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String  @unique
+  description String?
+
+  featuredImageId String    @map("featured_image_id")
+  featuredImage   Image     @relation(fields: [featuredImageId], references: [id], onDelete: Cascade)
+  products        Product[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("categories")
+}
+
+model Variant {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+  images      Image[]
+
+  price         Float
+  discountPrice Float? @map("discount_price")
+  stock         Int
+
+  product_id String
+  product    Product @relation(references: [id], fields: [product_id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  orders OrderItem[]
+
+  @@index([product_id])
+  @@map("variants")
+}
+
+model Product {
+  id               String  @id @default(cuid())
+  name             String
+  slug             String  @unique
+  shortDescription String? @map("short_description")
+
+  featuredImageId String @map("featured_image_id")
+  featuredImage   Image  @relation(fields: [featuredImageId], references: [id], onDelete: Cascade)
+
+  isFeatured Boolean @default(false) @map("is_featured")
+
+  variants   Variant[]
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId String?
+
+  users User[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("products")
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model Order {
+  id String @id @default(cuid())
+
+  status OrderStatus @default(PENDING)
+
+  userId String @map("user_id")
+  user   User   @relation(references: [id], fields: [userId], onDelete: Cascade)
+
+  phoneNumber String @map("phone_number")
+  firstName   String @map("first_name")
+  lastName    String @map("last_name")
+
+  street  String
+  city    String
+  state   String
+  zip     String?
+  country String
+
+  items      OrderItem[]
+  totalPrice Float       @map("total_price")
+  paymentRef String?     @unique @map("payment_ref")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id String @id @default(cuid())
+
+  orderId String @map("order_id")
+  order   Order  @relation(references: [id], fields: [orderId], onDelete: Cascade)
+
+  variantId String  @map("variant_id")
+  variant   Variant @relation(references: [id], fields: [variantId], onDelete: Restrict)
+
+  quantity Int
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("order_items")
+}

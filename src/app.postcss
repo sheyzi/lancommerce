@@ -1,0 +1,97 @@
+@import '@fontsource/karla';
+@import '@fontsource/plus-jakarta-sans';
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,600;0,700;1,500&display=swap');
+
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.active {
+		@apply bg-black text-white;
+	}
+	.button-blue {
+		@apply px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-eblue text-center;
+	}
+
+	.button-blue:hover {
+		@apply bg-blue-500;
+	}
+
+	.button-blue:focus {
+		@apply outline-none ring-2 ring-offset-2 ring-blue-500;
+	}
+
+	.form-control {
+		@apply flex flex-col gap-1;
+	}
+
+	.form-label {
+		@apply font-karla;
+	}
+
+	.form-error {
+		@apply text-red-500 text-xs mt-2;
+	}
+
+	.form-input {
+		@apply w-full p-1  border rounded bg-white md:text-sm;
+	}
+
+	.form-input:focus {
+		@apply outline-none ring-2 ring-offset-2;
+	}
+
+	.form-help {
+		@apply text-gray-500 text-xs mt-1;
+	}
+}
+
+@font-face {
+	font-family: 'Universo';
+	src: url('/fonts/universo-thin.otf') format('opentype');
+	font-weight: 100;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Universo';
+	src: url('/fonts/universo-light.otf') format('opentype');
+	font-weight: 300;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Universo';
+	src: url('/fonts/universo-regular.otf') format('opentype');
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Universo';
+	src: url('/fonts/universo-bold.otf') format('opentype');
+	font-weight: 700;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Universo';
+	src: url('/fonts/universo-black.otf') format('opentype');
+	font-weight: 900;
+	font-display: swap;
+}
+
+body {
+	font-family: 'Work Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Universo', sans-serif;
+}
