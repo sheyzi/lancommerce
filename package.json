@@ -13,7 +13,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
-		"postinstall": "pnpm run db:setup"
+		"postinstall": "pnpm run db:init"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
@@ -48,11 +48,15 @@
 		"argon2": "^0.31.1",
 		"axios": "^1.5.1",
 		"cloudinary": "^1.41.0",
+		"embla-carousel": "^8.3.0",
+		"embla-carousel-autoplay": "^8.3.0",
+		"embla-carousel-svelte": "^8.3.0",
 		"iconify-icon": "^1.0.8",
 		"lucia": "^2.6.0",
 		"prisma": "^5.8.1",
 		"slugify": "^1.6.6",
 		"svelte-french-toast": "^1.2.0",
 		"zod": "^3.22.2"
-	}
+	},
+	"packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
 }
