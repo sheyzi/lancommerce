@@ -34,7 +34,7 @@
 
 <svelte:window on:scroll={() => (scrollY = window.scrollY)} />
 
-<div class="sticky md:fixed w-full -top-0.5 {!open && 'z-20'} {
+<div class="fixed md:fixed w-full -top-0.5 {!open && 'z-20'} {
 	scrollY > 500 ? 'bg-white shadow-md' : 'bg-transparent [&>*]:!text-white'
 } transition-all">
 	<div
@@ -249,8 +249,10 @@
 		</div>
 
 		<div class="flex items-center space-x-2 mt-14">
-			<div class="bg-white
-			
+			<div class="
+				{
+	scrollY > 500 ? 'text-black bg-white' : 'text-white bg-transparent'
+			}
 			rounded flex items-center text-black px-2 w-full space-x-2">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
