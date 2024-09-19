@@ -115,7 +115,6 @@
             align-items: flex-start;
         }
         .hero-title {
-            font-size: 2rem;
             text-align: left;
         }
         .hero-description {
