@@ -8,6 +8,8 @@
 	import { page } from '$app/stores';
 	import { calculateCartLength, cartStore } from '../stores/cart.stores';
 
+	let scrollY = 0;
+
 	let open = false;
 	const toggle = () => {
 		open = !open;
@@ -30,14 +32,23 @@
 	$: cartQuantity = calculateCartLength($cartStore);
 </script>
 
-<div class="sticky md:static -top-0.5 {!open && 'z-20'} bg-white transition-all">
+<svelte:window on:scroll={() => (scrollY = window.scrollY)} />
+
+<div class="fixed md:fixed w-full -top-0.5 {!open && 'z-20'} {
+	scrollY > 500 ? 'bg-white shadow-md' : 'bg-transparent [&>*]:!text-white'
+} transition-all">
 	<div
 		class="max-w-7xl mx-auto md:text-xs lg:text-base lg:px-10 px-5 py-5 flex items-center justify-between"
 	>
 		<!-- Logo -->
 		<div>
 			<a href="/">
-				<img src="/logo.svg" alt="logo" class="h-5 w-auto" />
+				{#if scrollY > 500}
+					<img src="/logo.svg" alt="logo" class="h-5 w-auto" />
+				{:else}
+					<img src="/logo-white.svg" alt="logo" class="h-5 w-auto" />
+				{/if}
+				<!-- <img src="/logo.svg" alt="logo" class="h-5 w-auto" /> -->
 				<!-- <p class="text-3xl font-bold">Evolv.</p> -->
 			</a>
 		</div>
@@ -212,7 +223,11 @@
 			duration: 450,
 			easing: cubicIn
 		}}
-		class="md:hidden fixed h-screen w-screen top-0 z-20 bg-black text-white p-5 font-universo"
+		class="md:hidden fixed h-screen w-screen top-0 z-20  p-5 font-universo
+		{
+	scrollY > 500 ? 'bg-white text-black' : 'bg-black'
+		}
+		"
 	>
 		<div class="flex justify-between items-center">
 			<a href="/">
@@ -234,7 +249,11 @@
 		</div>
 
 		<div class="flex items-center space-x-2 mt-14">
-			<div class="bg-white rounded flex items-center text-black px-2 w-full space-x-2">
+			<div class="
+				{
+	scrollY > 500 ? 'text-black bg-white' : 'text-white bg-transparent'
+			}
+			rounded flex items-center text-black px-2 w-full space-x-2">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 20 20"

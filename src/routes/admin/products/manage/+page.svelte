@@ -18,6 +18,7 @@
 	let product = data.product;
 	let categories: Category[] = data.categories as Category[];
 	let categoryOptions: Option[] = [];
+	let selectedCategory: string | null = product?.categoryId || null;
 
 	$: {
 		if (categories) {
@@ -421,8 +422,8 @@
 		<Selector
 			name="categoryId"
 			options={categoryOptions}
+			bind:value={selectedCategory}
 			placeholder="Select Category..."
-			value={product?.categoryId ?? null}
 		/>
 		{#if form?.errors?.categoryId}
 			{#each form.errors.categoryId as error}
@@ -430,7 +431,6 @@
 			{/each}
 		{/if}
 	</div>
-
 	<div class="form-control flex gap-2">
 		<label for="isFeatured" class="form-label"> Is Featured: </label>
 		<input
