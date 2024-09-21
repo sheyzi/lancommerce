@@ -1,4 +1,4 @@
-import toast from 'svelte-french-toast';
+import { toast } from 'svelte-sonner';
 import slugify from 'slugify';
 // import { OrderStatus } from './types/order.type';
 
@@ -6,32 +6,21 @@ export type ToastType = 'success' | 'error' | 'warning' | 'info' | undefined | n
 
 export const showToastr = (message: string, type: ToastType) => {
 	if (message) {
-		if (type === 'success') {
-			toast(message, {
-				style: 'background: #8fef98; color: #06111F;',
-				position: 'bottom-right'
-			});
-		} else if (type === 'error') {
-			toast(message, {
-				style: 'background: #ef8f8f; color: #ed3434;',
-				position: 'bottom-right'
-			});
-		} else if (type === 'warning') {
-			toast(message, {
-				style: 'background: #fff3cd; color: #fbbf24;',
-				position: 'bottom-right'
-			});
-		} else if (type === 'info') {
-			// Blue background with white text
-			toast(message, {
-				style: 'background: #bab6b6; color: #111111;',
-				position: 'bottom-right'
-			});
-		} else {
-			toast(message, {
-				style: 'background: #bab6b6; color: #111111;',
-				position: 'bottom-right'
-			});
+		switch (type) {
+			case 'success':
+				toast.success(message);
+				break;
+			case 'error':
+				toast.error(message);
+				break;
+			case 'warning':
+				toast.warning(message);
+				break;
+			case 'info':
+				toast.info(message);
+				break;
+			default:
+				toast(message);
 		}
 	}
 };
