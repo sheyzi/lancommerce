@@ -37,8 +37,9 @@
 	<input type="hidden" name="productId" value={product.id} />
 	{#if $currentUser}
 		<button
+		on:click|stopPropagation
 			type="submit"
-			class="hover:text-black {isFavourite ? 'text-black' : 'text-transparent'}"
+			class="hover:text-black transition-colors duration-200 {isFavourite ? 'text-black' : 'text-transparent'}"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

@@ -35,7 +35,7 @@
 <svelte:window on:scroll={() => (scrollY = window.scrollY)} />
 
 <div class="fixed md:fixed w-full -top-0.5 {!open && 'z-20'} {
-	scrollY > 500 ? 'bg-white shadow-md' : 'bg-transparent [&>*]:!text-white'
+	scrollY > 500 ? 'bg-white ' : 'bg-transparent [&>*]:!text-white'
 } transition-all">
 	<div
 		class="max-w-7xl mx-auto md:text-xs lg:text-base lg:px-10 px-5 py-5 flex items-center justify-between"

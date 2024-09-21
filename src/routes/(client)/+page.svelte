@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Hero from '$lib/components/Hero.svelte';
+	import LatestProducts from '$lib/components/LatestProducts.svelte';
 	import ProductCard from '$lib/components/ProductCard.svelte';
 	import type { PageData } from './$types';
 
@@ -14,21 +15,7 @@
 </svelte:head>
 
 <Hero />
-<section role="contentinfo" class="max-w-7xl mx-auto md:px-10 px-5 mt-[60px]">
-	<div class="text-center text-black flex flex-col items-center gap-10 w-full">
-		<h3 class="text-2xl font-bold">LATEST PRODUCTS</h3>
-
-		<div
-			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center w-full md:gap-5 gap-10 py-3"
-		>
-			{#each products as product}
-				<ProductCard {product} />
-			{/each}
-		</div>
-
-		<button class=" px-9 bg-eblue py-2 rounded-full text-white">View More</button>
-	</div>
-</section>
+<LatestProducts {products} />
 <section class="w-full bg-black md:px-10 px-5">
 	<div
 		class="md:flex justify-center gap-5 md:justify-between items-center max-w-7xl max-h-[800px] h-full py-10 text-white w-full mx-auto md:px-10 mt-20"
