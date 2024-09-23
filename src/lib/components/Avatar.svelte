@@ -28,7 +28,7 @@
 		></button
 	>
 	{#if openOptions}
-		<nav class="absolute right-1 xl:right-0 top-10 min-w-fit">
+		<nav class="absolute text-black right-1 xl:right-0 top-10 min-w-fit">
 			<ol class="py-2 bg-white shadow rounded flex flex-col w-full">
 				<li class="px-5 py-1 hover:bg-slate-300 cursor-pointer">
 					<a on:click={toggleOptions} href="/account">Account</a>
