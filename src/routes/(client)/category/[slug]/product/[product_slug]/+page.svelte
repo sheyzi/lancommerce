@@ -6,6 +6,8 @@
 	import type { ProductWithRelations, VariantWithRelations } from '$lib/types/products.types';
 	import { addToCart } from '../../../../../../lib/stores/cart.stores';
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
 	export let data: PageData;
 
@@ -15,6 +17,17 @@
 	let variantSelected = false;
 	let images: Image[] = [];
 	let quantityToBuy = 0;
+
+	onMount(() => {
+		const variantId = $page.url.searchParams.get('variant');
+		if (variantId) {
+			const selectedVariant = product.variants.find(v => v.id === variantId);
+			if (selectedVariant) {
+				activeVariant = selectedVariant;
+				variantSelected = true;
+			}
+		}
+	});
 
 	$: {
 		product = data.product as ProductWithRelations;
@@ -48,27 +61,51 @@
 	</title>
 </svelte:head>
 
-<main class="max-w-7xl mx-auto md:px-10 px-5 my-[60px]" role="contentinfo">
+<main class="max-w-7xl mx-auto md:px-10 px-5 my-[60px] py-10" role="contentinfo">
 	<section class="grid w-full grid-cols-1 md:grid-cols-2 gap-2" role="main">
 		<div>
-			<div class="w-full flex flex-row-reverse md:flex-col gap-3">
+			<div class="w-full flex flex-col gap-3">
 				<img
 					style="aspect-ratio: 4/3"
-					class="md:w-full w-[70%] object-cover h-auto md:h-full cursor-pointer"
+					class="w-full object-cover h-auto cursor-pointer"
 					src={variantSelected ? activeVariant.images[0].url : product?.featuredImage.url}
-					alt=""
+					alt={product.name}
 				/>
 
-				<div class="flex mobile-carousel h-[300px] md:h-full gap-3 md:carousel w-[30%] md:w-full">
-					{#each images as image, i}
-						{#if image.id !== product?.featuredImage.id}
-							<div class="carousel-item h-[60px] w-full sm:w-full md:h-[150px] md:w-[170px]">
-								<button class="cursor-pointer w-full">
-									<!-- <button class="cursor-pointer w-full" on:click={() => openPreviewModal(image)}> -->
-									<img src={image.url} class="object-cover w-full" alt="" />
-								</button>
-							</div>
-						{/if}
+				<div class="flex flex-wrap gap-2">
+					<button
+						class="w-20 h-20 border-2 transition-colors duration-200 {
+							!variantSelected ? 'border-black' : 'border-gray-300 hover:border-black'
+						}"
+						on:click={() => {
+							variantSelected = false;
+							activeVariant = product.variants[0];
+						}}
+					>
+						<img
+							src={product.featuredImage.url}
+							alt="Featured"
+							class="w-full h-full object-cover"
+						/>
+					</button>
+					{#each product.variants as variant}
+						<button
+							class="w-20 h-20 border-2 transition-colors duration-200 {
+								variantSelected && activeVariant.id === variant.id
+									? 'border-black'
+									: 'border-gray-300 hover:border-black'
+							}"
+							on:click={() => {
+								activeVariant = variant;
+								variantSelected = true;
+							}}
+						>
+							<img
+								src={variant.images[0].url}
+								alt={variant.name}
+								class="w-full h-full object-cover"
+							/>
+						</button>
 					{/each}
 				</div>
 			</div>
@@ -76,30 +113,33 @@
 
 		<div class="w-full grid grid-cols-1 gap-10 border-[#CCCCCC] md:px-8 py-5">
 			<section class="flex flex-col gap-3 w-full">
-				<h1 class="font-primary font-medium text-dark text-2xl md:text-[30px]">
+				<h1 class="font-work-sans font-bold text-dark text-4xl tracking-tight">
 					{product?.name}
 				</h1>
 
-				<p class="text-dark text-sm">
+				<p class="text-dark flex flex-col gap-2 font-medium text-lg">
 					{#if activeVariant?.discountPrice}
-						<span class="italic line-through">{formatCurrency(activeVariant?.price)}</span>
+						<span class="italic line-through text-red-500 text-sm">{formatCurrency(activeVariant?.price)}</span>
 					{/if}
 					{formatCurrency(activeVariant?.discountPrice ?? activeVariant?.price)}
 				</p>
 				<div class="md:mt-5 gap-3">
 					<p class="text-sm font-bold">Variant</p>
-					<div class="flex items-center flex-wrap gap-2 mt-2">
+					<div class="flex flex-wrap gap-2">
 						{#each product.variants as variant}
 							<button
 								on:click={() => {
 									activeVariant = variant;
 									variantSelected = true;
 								}}
-								class="{activeVariant.name === variant.name
-									? 'bg-black text-white'
-									: 'bg-white text-black'} hover:bg-black hover:text-white border-black text-sm border-2 rounded p-1"
-								>{variant.name}</button
+								class="px-4 py-3 rounded-md text-sm border-2 transition-colors duration-200 {
+									activeVariant.id === variant.id
+										? 'bg-black text-white border-black'
+										: 'bg-white text-black border-gray-300 hover:border-black'
+								}"
 							>
+								{variant.name}
+							</button>
 						{/each}
 					</div>
 				</div>
