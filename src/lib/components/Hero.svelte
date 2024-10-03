@@ -43,7 +43,7 @@
         emblaApi = event.detail;
     }
 
-    function animateSlide(element, isEntering) {
+    function animateSlide(element: Element, isEntering: boolean) {
         const titleElement = element.querySelector('.hero-title .text');
         const descriptionElement = element.querySelector('.hero-description');
 
@@ -76,11 +76,11 @@
                 );
             }
         } else {
-            if (titleElement) {
+            if (titleElement instanceof HTMLElement) {
                 titleElement.style.opacity = '0';
                 titleElement.style.transform = 'translateY(100%) skewY(10deg) scale(0.8)';
             }
-            if (descriptionElement) {
+            if (descriptionElement instanceof HTMLElement) {
                 descriptionElement.style.opacity = '0';
                 descriptionElement.style.transform = 'translateY(20px)';
             }
