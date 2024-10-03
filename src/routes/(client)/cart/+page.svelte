@@ -11,6 +11,8 @@
 	import type { Address } from '@prisma/client';
 	import { currentUser } from '$lib/stores/user.stores';
 
+	console.log($cartStore.items);
+
 	let cartTotal = 0;
 	let cartLength = 0;
 
@@ -61,18 +63,21 @@
 								{#each $cartStore.items as item}
 									<tr>
 										<td class="p-4">
-											<div class="flex items-center mr-2">
+											<a
+												href={`/category/${item.variant.product.categoryId}/product/${item.variant.product.slug}?variant=${item.variant.id}`}
+												class="flex items-center mr-2 "
+											>
 												<figure class="h-12 w-12 lg:h-16 lg:w-16 mr-4">
-													<img
-														class="w-full object-cover h-full"
-														src={item.variant.images[0].url}
-														alt={item.variant.name}
-													/>
+														<img
+															class="w-full object-cover h-full"
+															src={item.variant.images[0].url}
+															alt={item.variant.name}
+														/>
 												</figure>
 												<span class="font-semibold text-xs lg:text-base line-clamp-2"
 													>{item.variant.product.name} ({item.variant.name})</span
 												>
-											</div>
+											</a>
 										</td>
 										<td class="p-4"
 											>{formatCurrency(item.variant.discountPrice ?? item.variant.price)}</td

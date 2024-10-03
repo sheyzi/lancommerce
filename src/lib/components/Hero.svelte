@@ -49,7 +49,7 @@
             {#each slides as slide}
                 <div class="embla__slide relative h-full w-full flex-shrink-0 bg-fixed">
                     <div 
-                        class="hero relative h-full w-full bg-cover bg-center-right bg-no-repeat bg-fixed"
+                        class="hero relative h-full w-full bg-cover bg-center bg-no-repeat bg-fixed"
                         style="background-image: url('{slide.image}');"
                     >
                         <div class="overlay absolute inset-0 bg-black opacity-50"></div>

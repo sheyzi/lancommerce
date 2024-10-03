@@ -6,7 +6,7 @@
 	import { browser } from '$app/environment';
 	import { page, navigating } from '$app/stores';
 	import { showToastr, type ToastType } from '$lib/utils';
-	import { Toaster } from 'svelte-french-toast';
+	import { Toaster } from 'svelte-sonner';
 	import { initializeCart } from '../lib/stores/cart.stores';
 	import PageLoader from '../lib/components/PageLoader.svelte';
 
@@ -27,7 +27,7 @@
 	}
 </script>
 
-<Toaster />
+<Toaster richColors position="bottom-right" />
 <slot />
 
 {#if !!$navigating}
