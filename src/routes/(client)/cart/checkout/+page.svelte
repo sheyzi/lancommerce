@@ -24,7 +24,7 @@
 {/if}
 
 <div class="bg-gray-100 min-h-screen py-8">
-	<div class="max-w-7xl mx-auto md:px-10 px-5 my-[60px]" role="contentinfo">
+	<div class="max-w-[94rem] mx-auto md:px-10 px-5 my-[60px]" role="contentinfo">
 		<h1 class="text-2xl font-medium font-work-sans mb-4">Complete your purchase</h1>
 		<form
 			class="flex flex-col md:flex-row gap-4"

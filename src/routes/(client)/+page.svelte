@@ -18,7 +18,7 @@
 <LatestProducts {products} />
 <section class="w-full bg-black md:px-10 px-5">
 	<div
-		class="md:flex justify-center gap-5 md:justify-between items-center max-w-7xl max-h-[800px] h-full py-10 text-white w-full mx-auto md:px-10 mt-20"
+		class="md:flex justify-center gap-5 md:justify-between items-center max-w-[94rem] max-h-[800px] h-full py-10 text-white w-full mx-auto md:px-10 mt-20"
 	>
 		<div class="w-full flex flex-col md:items-start items-center text-center md:text-left gap-5">
 			<h2 class="text-6xl font-universio max-w-xs">Partner with us</h2>
@@ -34,7 +34,7 @@
 	</div>
 </section>
 <section class="w-full mt-20 md:px-10 px-5">
-	<div class="max-w-7xl mx-auto py-10">
+	<div class="max-w-[94rem] mx-auto py-10">
 		<div class="bg-black w-full h-[400px]" />
 	</div>
 </section>

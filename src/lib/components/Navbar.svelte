@@ -38,7 +38,7 @@
 	scrollY > 500 ? 'bg-white ' : 'bg-transparent [&>*]:!text-white'
 } transition-all">
 	<div
-		class="max-w-7xl mx-auto md:text-xs lg:text-base lg:px-10 px-5 py-5 flex items-center justify-between"
+		class="max-w-[94rem] mx-auto md:text-xs lg:text-base lg:px-10 px-5 py-5 flex items-center justify-between"
 	>
 		<!-- Logo -->
 		<div>

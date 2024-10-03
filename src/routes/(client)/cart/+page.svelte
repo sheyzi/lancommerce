@@ -45,7 +45,7 @@
 			</div>
 		</div>
 	{:else}
-		<div class="max-w-7xl mx-auto md:px-10 px-5 my-[60px]">
+		<div class="max-w-[94rem] mx-auto md:px-10 px-5 my-[60px]">
 			<h1 class="text-2xl font-semibold font-work-sans mb-4">Shopping Cart</h1>
 			<div class="flex flex-col md:flex-row gap-4">
 				<div class="md:w-3/4">

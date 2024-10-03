@@ -1,6 +1,6 @@
 <footer class="w-full grid grd-cols-1 relative bottom-0 bg-black/90 mt-20">
 	<section
-		class="max-w-7xl mx-auto px-5 md:px-10 py-16 w-full justify-between flex flex-wrap items-center md:flex-row gap-4 text-white"
+		class="max-w-[94rem] mx-auto px-5 md:px-10 py-16 w-full justify-between flex flex-wrap items-center md:flex-row gap-4 text-white"
 	>
 		<nav>
 			<ul class="uppercase">
@@ -54,7 +54,7 @@
 	</section>
 	<section class="w-full bg-black py-3">
 		<div
-			class=" mx-auto px-5 md:px-10 max-w-7xl flex flex-col md:flex-row gap-2 items-center justify-between w-full"
+			class=" mx-auto px-5 md:px-10 max-w-[94rem] flex flex-col md:flex-row gap-2 items-center justify-between w-full"
 		>
 			<nav class=" text-white flex items-center gap-3">
 				<li class="list-none">

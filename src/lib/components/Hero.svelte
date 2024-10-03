@@ -114,7 +114,7 @@
                         style="background-image: url('{slide.image}');"
                     >
                         <div class="overlay absolute inset-0 bg-black opacity-50"></div>
-                        <div class="hero-content flex flex-col justify-start items-start w-full px-4 text-white font-karla lg:max-w-7xl pl-2">
+                        <div class="hero-content flex flex-col justify-start items-start w-full px-4 text-white font-karla lg:max-w-[94rem] pl-2">
                             <div class="flex flex-col md:items-start gap-8">
                                 <div class="flex flex-col gap-3">
                                     <h1 class="hero-title text-5xl md:text-8xl lg:text-5xl xl:text-6xl text-left max-w-[700px] leading-none text-white py-10 overflow-hidden">
@@ -141,7 +141,7 @@
             {/each}
         </div>
     </div>
-    <div class="absolute inset-x-0 bottom-0 flex flex-col items-start w-full lg:max-w-7xl mx-auto hero-name text-start text-white text-2xl lg:text-[9rem] xl:text-[13vw] font-universo font-semibold h-28 lg:h-[10rem] px-5 lg:px-0">
+    <div class="absolute inset-x-0 bottom-0 flex flex-col items-start w-full lg:max-w-[94rem] mx-auto hero-name text-start text-white text-2xl lg:text-[9rem] xl:text-[13vw] font-universo font-semibold h-28 lg:h-[10rem] px-5 lg:px-0">
         <div class="text-left ">EVOLV.</div>
     </div>
 </section>

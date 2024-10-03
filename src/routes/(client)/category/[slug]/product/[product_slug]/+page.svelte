@@ -61,7 +61,7 @@
 	</title>
 </svelte:head>
 
-<main class="max-w-7xl mx-auto md:px-10 px-5 my-[60px] py-10" role="contentinfo">
+<main class="max-w-[94rem] mx-auto md:px-10 px-5 my-[60px] py-10" role="contentinfo">
 	<section class="grid w-full grid-cols-1 md:grid-cols-2 gap-2" role="main">
 		<div>
 			<div class="w-full flex flex-col gap-3">
@@ -265,7 +265,7 @@
 	<!-- <p class="prose mt-10 max-w-none">
 		{@html listing.description}
 	</p> -->
-	<section role="contentinfo" class="max-w-7xl mx-auto md:px-10 px-5 mt-[60px]">
+	<section role="contentinfo" class="max-w-[94rem] mx-auto md:px-10 px-5 mt-[60px]">
 		<div class="text-center text-black flex flex-col items-center gap-10 w-full">
 			<h3 class="text-2xl font-bold">RELATED PRODUCTS</h3>
 
