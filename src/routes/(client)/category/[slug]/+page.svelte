@@ -30,7 +30,7 @@
 	</div>
 </section>
 
-<section role="contentinfo" class="max-w-7xl mx-auto md:px-10 px-5 mt-[60px]">
+<section role="contentinfo" class="max-w-[94rem] mx-auto md:px-10 px-5 mt-[60px]">
 	<div class="text-center text-black flex flex-col items-center gap-10 w-full">
 		<h3 class="text-2xl font-bold">PRODUCTS</h3>
 

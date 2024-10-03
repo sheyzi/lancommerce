@@ -35,7 +35,7 @@
     });
 </script>
 
-<section role="contentinfo" class="max-w-7xl mx-auto md:px-10 px-5 mt-[60px]">
+<section role="contentinfo" class="max-w-[94rem] mx-auto md:px-10 px-5 mt-[60px]">
     <div class="text text-black flex flex-col gap-10 w-full">
        <div class="min-w-full flex justify-between items-center">
         <h3 class="text-2xl font-bold max-w-[50%]">LATEST PRODUCTS</h3>

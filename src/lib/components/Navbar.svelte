@@ -38,7 +38,7 @@
 	scrollY > 500 ? 'bg-white ' : 'bg-transparent [&>*]:!text-white'
 } transition-all">
 	<div
-		class="max-w-7xl mx-auto md:text-xs lg:text-base lg:px-10 px-5 py-5 flex items-center justify-between"
+		class="max-w-[94rem] mx-auto md:text-xs lg:text-base lg:px-10 px-5 py-5 flex items-center justify-between"
 	>
 		<!-- Logo -->
 		<div>
@@ -225,7 +225,7 @@
 		}}
 		class="md:hidden fixed h-screen w-screen top-0 z-20  p-5 font-universo
 		{
-	scrollY > 500 ? 'bg-white text-black' : 'bg-black'
+	scrollY > 500 ? 'bg-white text-black' : 'bg-white'
 		}
 		"
 	>
@@ -318,7 +318,7 @@
 		background-color: transparent;
 	}
 
-	.nav-item:hover {
+	/* .nav-item:hover {
 		color: #762ebb;
-	}
+	} */
 </style>

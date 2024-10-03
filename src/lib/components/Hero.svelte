@@ -2,11 +2,12 @@
     import { onMount } from 'svelte';
     import emblaCarouselSvelte from 'embla-carousel-svelte';
     import Autoplay from 'embla-carousel-autoplay';
-  
+    import { animate, spring } from "motion"
+
     let emblaApi;
     const options = { loop: true };
     let plugins = [Autoplay()];
-  
+
     const slides = [
 
   {
@@ -41,9 +42,69 @@
     function onInit(event: { detail: any; }) {
         emblaApi = event.detail;
     }
+
+    function animateSlide(element: Element, isEntering: boolean) {
+        const titleElement = element.querySelector('.hero-title .text');
+        const descriptionElement = element.querySelector('.hero-description');
+
+        if (isEntering) {
+            if (titleElement) {
+                animate(titleElement, 
+                    { 
+                        transform: ['translateY(100%) skewY(10deg)', 'translateY(0%) skewY(0deg)'],
+                        opacity: [0, 1],
+                        scale: [0.8, 1]
+                    },
+                    {   
+                        duration: 0.8,
+                        easing: spring({ stiffness: 100, damping: 15 })
+                    }
+                );
+            }
+
+            if (descriptionElement) {
+                animate(descriptionElement,
+                    {
+                        opacity: [0, 1],
+                        transform: ['translateY(20px)', 'translateY(0px)']
+                    },
+                    {
+                        duration: 0.5,
+                        delay: 0.3,
+                        easing: spring({ stiffness: 100, damping: 15 })
+                    }
+                );
+            }
+        } else {
+            if (titleElement instanceof HTMLElement) {
+                titleElement.style.opacity = '0';
+                titleElement.style.transform = 'translateY(100%) skewY(10deg) scale(0.8)';
+            }
+            if (descriptionElement instanceof HTMLElement) {
+                descriptionElement.style.opacity = '0';
+                descriptionElement.style.transform = 'translateY(20px)';
+            }
+        }
+    }
+
+    onMount(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                animateSlide(entry.target, entry.isIntersecting);
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.embla__slide').forEach(slide => {
+            observer.observe(slide);
+        });
+
+        return () => {
+            observer.disconnect();
+        };
+    });
 </script>
   
-<section class="relative">
+<section class="relative overflow-y-hidden">
     <div class="embla h-[90vh] lg:h-screen w-full" use:emblaCarouselSvelte="{{ options, plugins }}" on:emblaInit={onInit}>
         <div class="embla__container h-full">
             {#each slides as slide}
@@ -53,13 +114,15 @@
                         style="background-image: url('{slide.image}');"
                     >
                         <div class="overlay absolute inset-0 bg-black opacity-50"></div>
-                        <div class="hero-content flex flex-col justify-start items-start w-full px-4 text-white font-karla lg:max-w-7xl pl-2">
+                        <div class="hero-content flex flex-col justify-start items-start w-full px-4 text-white font-karla lg:max-w-[94rem] pl-2">
                             <div class="flex flex-col md:items-start gap-8">
                                 <div class="flex flex-col gap-3">
-                                    <h1 class="hero-title text-5xl md:text-8xl lg:text-5xl xl:text-6xl text-left max-w-[700px] leading-none text-white">
+                                    <h1 class="hero-title text-5xl md:text-8xl lg:text-5xl xl:text-6xl text-left max-w-[700px] leading-none text-white py-10 overflow-hidden">
+                                      <div class="text opacity-0 transform translate-y-full skew-y-[10deg] scale-90">
                                         {slide.title}
+                                      </div>  
                                     </h1>
-                                    <p class="hero-description text-base md:text-lg xl:text-lg text-left font-normal max-w-[411px]">
+                                    <p class="hero-description text-base md:text-lg xl:text-lg text-left font-normal max-w-[411px] opacity-0 transform translate-y-5">
                                         {slide.description}
                                     </p>
                                 </div>
@@ -78,8 +141,8 @@
             {/each}
         </div>
     </div>
-    <div class="absolute inset-x-0 bottom-0 flex flex-col items-start w-full lg:max-w-7xl mx-auto hero-name text-start text-white text-2xl lg:text-[9rem] xl:text-[13vw] font-universo font-semibold h-28 lg:h-[10rem] px-5 lg:px-0">
-        <div class="text-left">EVOLV.</div>
+    <div class="absolute inset-x-0 bottom-0 flex flex-col items-start w-full lg:max-w-[94rem] mx-auto hero-name text-start text-white text-2xl lg:text-[9rem] xl:text-[13vw] font-universo font-semibold h-28 lg:h-[10rem] px-5 lg:px-0">
+        <div class="text-left ">EVOLV.</div>
     </div>
 </section>
   
