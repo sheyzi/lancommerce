@@ -225,7 +225,7 @@
 		}}
 		class="md:hidden fixed h-screen w-screen top-0 z-20  p-5 font-universo
 		{
-	scrollY > 500 ? 'bg-white text-black' : 'bg-black'
+	scrollY > 500 ? 'bg-white text-black' : 'bg-white'
 		}
 		"
 	>
@@ -318,7 +318,7 @@
 		background-color: transparent;
 	}
 
-	.nav-item:hover {
+	/* .nav-item:hover {
 		color: #762ebb;
-	}
+	} */
 </style>
