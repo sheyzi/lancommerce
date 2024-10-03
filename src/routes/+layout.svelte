@@ -9,27 +9,38 @@
 	import { Toaster } from 'svelte-sonner';
 	import { initializeCart } from '../lib/stores/cart.stores';
 	import PageLoader from '../lib/components/PageLoader.svelte';
+	import Preloader from '../lib/components/Preloader.svelte';
 
 	export let data;
+
+	let isLoading = true;
 
 	onMount(() => {
 		currentUser.set(data.user || null);
 		initializeCart();
+		
+		// Simulate content loading
+		setTimeout(() => {
+			isLoading = false;
+		}, 2000); // Adjust this time as needed
 	});
 
 	$: {
 		if (browser) {
 			let message = $page.url.searchParams.get('message');
 			let type = $page.url.searchParams.get('messageType') as ToastType;
-			// Valid types are: success, error, warning, info
 			if (message) showToastr(message, type || 'info');
 		}
 	}
 </script>
 
-<Toaster richColors position="bottom-right" />
-<slot />
+<Preloader bind:isLoading />
 
-{#if !!$navigating}
-	<PageLoader />
+{#if !isLoading}
+	<Toaster richColors position="bottom-right" />
+	<slot />
+
+	{#if !!$navigating}
+		<PageLoader />
+	{/if}
 {/if}
