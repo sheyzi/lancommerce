@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Wishlist | Evolv</title>
+	<title>Wishlist | A & U</title>
 </svelte:head>
 
 <section role="contentinfo" class="max-w-[94rem] mx-auto md:px-10 px-5 mt-[60px]">

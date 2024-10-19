@@ -6,6 +6,7 @@
     import ArrowLeft from './icons/ArrowLeft.svelte';
     import ArrowRight from './icons/ArrowRight.svelte';
     export let products;
+    export let title;
 
     let options = { loop: false, containScroll: 'trimSnaps', dragFree: true, speed: 10, dragThreshold: 1, selectedClass: 'selected' };
 
@@ -38,7 +39,7 @@
 <section role="contentinfo" class="max-w-[94rem] mx-auto md:px-10 px-5 mt-[60px]">
     <div class="text text-black flex flex-col gap-10 w-full">
        <div class="min-w-full flex justify-between items-center">
-        <h3 class="text-2xl font-bold max-w-[50%]">LATEST PRODUCTS</h3>
+        <h3 class="text-2xl font-bold max-w-[50%] uppercase">{title}</h3>
         <a href="/products" class=" text-sm lg:text-lg flex gap-2 hover:gap-4 transition-all duration-200 items-center">
         <span>View All</span>
         <ArrowRight/>

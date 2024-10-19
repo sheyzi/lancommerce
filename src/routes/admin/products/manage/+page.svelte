@@ -97,9 +97,9 @@
 
 <svelte:head>
 	{#if product}
-		<title>Edit {product.name} - Evolv</title>
+		<title>Edit {product.name} - A & U</title>
 	{:else}
-		<title>{product ? `Edit ${product.name}` : 'Add Product'} - Evolv</title>
+		<title>{product ? `Edit ${product.name}` : 'Add Product'} - A & U</title>
 	{/if}
 </svelte:head>
 

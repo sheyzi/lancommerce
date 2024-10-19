@@ -35,21 +35,15 @@
 <svelte:window on:scroll={() => (scrollY = window.scrollY)} />
 
 <div class="fixed md:fixed w-full -top-0.5 {!open && 'z-20'} {
-	scrollY > 500 ? 'bg-white ' : 'bg-transparent [&>*]:!text-white'
+	$page.url.pathname === '/' && scrollY > 500 ? 'bg-white text-black' : 'bg-transparent text-white'
 } transition-all">
 	<div
 		class="max-w-[94rem] mx-auto md:text-xs lg:text-base lg:px-10 px-5 py-5 flex items-center justify-between"
 	>
 		<!-- Logo -->
 		<div>
-			<a href="/">
-				{#if scrollY > 500}
-					<img src="/logo.svg" alt="logo" class="h-5 w-auto" />
-				{:else}
-					<img src="/logo-white.svg" alt="logo" class="h-5 w-auto" />
-				{/if}
-				<!-- <img src="/logo.svg" alt="logo" class="h-5 w-auto" /> -->
-				<!-- <p class="text-3xl font-bold">Evolv.</p> -->
+			<a href="/" class="text-xl font-bold { scrollY > 500 || 	$page.url.pathname !== '/' ? 'text-black' : 'text-white'}" >
+				Abike & You
 			</a>
 		</div>
 		<!-- Primary Nav -->
@@ -213,20 +207,10 @@
 
 {#if open}
 	<div
-		in:fly={{
-			x: -100,
-			duration: 450,
-			easing: cubicOut
-		}}
-		out:fly={{
-			x: -100,
-			duration: 450,
-			easing: cubicIn
-		}}
-		class="md:hidden fixed h-screen w-screen top-0 z-20  p-5 font-universo
-		{
-	scrollY > 500 ? 'bg-white text-black' : 'bg-white'
-		}
+		in:fly={{ x: -100, duration: 450, easing: cubicOut }}
+		out:fly={{ x: -100, duration: 450, easing: cubicIn }}
+		class="md:hidden fixed h-screen w-screen top-0 z-20 p-5 font-universo
+		{scrollY > 500 ? 'bg-white text-black' : 'bg-black text-white'}
 		"
 	>
 		<div class="flex justify-between items-center">
@@ -317,8 +301,4 @@
 		color: #762ebb;
 		background-color: transparent;
 	}
-
-	/* .nav-item:hover {
-		color: #762ebb;
-	} */
 </style>

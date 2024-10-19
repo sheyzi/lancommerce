@@ -33,7 +33,7 @@
 </script>
 
 <svelte:head>
-	<title>Shopping Cart - Evolv</title>
+	<title>Shopping Cart - A & U</title>
 </svelte:head>
 <div class="bg-gray-100 min-h-screen py-8">
 	{#if cartLength < 1}

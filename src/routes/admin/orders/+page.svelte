@@ -38,7 +38,7 @@
 </script>
 
 <svelte:head>
-	<title>Orders - Evolv</title>
+	<title>Orders - A & U</title>
 </svelte:head>
 
 <OrderDetails open={viewMore} {currentOrder} on:close={() => (viewMore = false)} />

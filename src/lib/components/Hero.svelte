@@ -142,7 +142,7 @@
         </div>
     </div>
     <div class="absolute inset-x-0 bottom-0 flex flex-col items-start w-full lg:max-w-[94rem] mx-auto hero-name text-start text-white text-2xl lg:text-[9rem] xl:text-[13vw] font-universo font-semibold h-28 lg:h-[10rem] px-5 lg:px-0">
-        <div class="text-left ">EVOLV.</div>
+        <div class="text-left ">A N U.</div>
     </div>
 </section>
   

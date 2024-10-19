@@ -10,7 +10,7 @@
 </script>
 
 <svelte:head>
-	<title>{category.name} - Evolv</title>
+	<title>{category.name} - A & U</title>
 </svelte:head>
 
 <!-- Hero Section -->
