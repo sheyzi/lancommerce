@@ -48,7 +48,7 @@
 </script>
 
 <svelte:head>
-	<title>Products - Evolv</title>
+	<title>Products - A & U</title>
 </svelte:head>
 
 <div class="flex justify-between items-center">

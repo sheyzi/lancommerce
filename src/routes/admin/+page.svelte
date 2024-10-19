@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>Dashboard - Evolv</title>
+	<title>Dashboard - A & U</title>
 </svelte:head>
 
 <div class="mb-10 flex justify-between">

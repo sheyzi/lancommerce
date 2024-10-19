@@ -52,7 +52,7 @@
 </script>
 
 <svelte:head>
-	<title>Account - Evolv</title>
+	<title>Account - A & U</title>
 </svelte:head>
 
 <div class="min-w-screen min-h-screen md:flex">

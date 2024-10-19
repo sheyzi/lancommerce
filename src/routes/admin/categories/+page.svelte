@@ -49,7 +49,7 @@
 </script>
 
 <svelte:head>
-	<title>Categories - Evolv</title>
+	<title>Categories - A & U</title>
 </svelte:head>
 
 <div class="flex justify-between items-center">

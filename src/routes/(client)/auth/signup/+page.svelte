@@ -13,7 +13,7 @@
 
 <!-- Centered tailwind ecommerce login page -->
 <svelte:head>
-	<title>Sign Up - Evolv</title>
+	<title>Sign Up - A & U</title>
 </svelte:head>
 
 <div class="w-full h-full flex flex-col items-center justify-center py-20">

@@ -33,7 +33,7 @@
 </script>
 
 <svelte:head>
-	<title>Customers - Evolv</title>
+	<title>Customers - A & U</title>
 </svelte:head>
 
 <CustomerDetails

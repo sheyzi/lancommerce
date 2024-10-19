@@ -16,7 +16,7 @@
 </script>
 
 <svelte:head>
-	<title>Checkout Cart - Evolv</title>
+	<title>Checkout Cart - A & U</title>
 </svelte:head>
 
 {#if paymentProcessing}

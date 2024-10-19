@@ -9,8 +9,8 @@
 				<li><a href="/">Find a store</a></li>
 				<li><a href="/">Sign up for email</a></li>
 				<li><a href="/">Become a member</a></li>
-				<li><a href="/">Evolv.Journal</a></li>
-				<li><a href="/">Send us a dfeedback</a></li>
+				<li><a href="/">A&U Journal</a></li>
+				<li><a href="/">Send us a feedback</a></li>
 			</ul>
 		</nav>
 		<nav>
@@ -26,7 +26,7 @@
 		</nav>
 		<nav>
 			<ul class="">
-				<li><a href="/">ABOUT EVOLV.</a></li>
+				<li><a href="/">ABOUT A&U.</a></li>
 				<li><a href="/">News</a></li>
 				<li><a href="/">Careers</a></li>
 				<li><a href="/">Investors</a></li>

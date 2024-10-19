@@ -42,8 +42,8 @@
 	>
 		<!-- Logo -->
 		<div>
-			<a href="/">
-				<img src={scrollY > 500 || $page.url.pathname !== '/' ? "/logo.svg" : "/logo-white.svg"} alt="logo" class="h-5 w-auto" />
+			<a href="/" class="text-xl font-bold { scrollY > 500 || 	$page.url.pathname !== '/' ? 'text-black' : 'text-white'}" >
+				Abike & You
 			</a>
 		</div>
 		<!-- Primary Nav -->

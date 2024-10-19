@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>Order Success - Evolv</title>
+	<title>Order Success - A & U</title>
 </svelte:head>
 
 <div class="min-h-[80vh] flex justify-center items-center px-5 md:px-10">

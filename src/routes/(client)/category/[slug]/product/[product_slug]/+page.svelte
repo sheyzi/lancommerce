@@ -57,7 +57,7 @@
 
 <svelte:head>
 	<title>
-		{product.name} - Evolv
+		{product.name} - A & U
 	</title>
 </svelte:head>
 
