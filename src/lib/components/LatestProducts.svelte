@@ -53,21 +53,6 @@
                         <div class="embla__slide">
                             <ProductCard {product} />
                         </div>
-                        <div class="embla__slide">
-                            <ProductCard {product} />
-                        </div>
-                        <div class="embla__slide">
-                            <ProductCard {product} />
-                        </div>
-                        <div class="embla__slide">
-                            <ProductCard {product} />
-                        </div>
-                        <div class="embla__slide">
-                            <ProductCard {product} />
-                        </div>
-                        <div class="embla__slide">
-                            <ProductCard {product} />
-                        </div>
                     {/each}
                 </div>
             </div>
