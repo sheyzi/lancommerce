@@ -9,11 +9,8 @@
 	import { calculateCartLength, cartStore } from '../stores/cart.stores';
 
 	let scrollY = 0;
-
 	let open = false;
-	const toggle = () => {
-		open = !open;
-	};
+	const toggle = () => (open = !open);
 
 	const getCategories = async (): Promise<Category[]> => {
 		try {
@@ -34,271 +31,160 @@
 
 <svelte:window on:scroll={() => (scrollY = window.scrollY)} />
 
-<div class="fixed md:fixed w-full -top-0.5 {!open && 'z-20'} {
-	$page.url.pathname === '/' && scrollY > 500 ? 'bg-white text-black' : 'bg-transparent text-white'
-} transition-all">
-	<div
-		class="max-w-[94rem] mx-auto md:text-xs lg:text-base lg:px-10 px-5 py-5 flex items-center justify-between"
-	>
-		<!-- Logo -->
-		<div>
-			<a href="/" class="text-xl font-bold { scrollY > 500 || 	$page.url.pathname !== '/' ? 'text-black' : 'text-white'}" >
-				Abike & You
-			</a>
-		</div>
-		<!-- Primary Nav -->
-		<nav class="md:flex items-center justify-center hidden space-x-5">
-			{#await categories}
-				{#each [1, 2, 3] as _}
-					<div class="h-3 w-16 animate-pulse bg-base-300 rounded-full" />
-				{/each}
-			{:then categories}
-				{#each categories as category}
-					<a
-						href="/category/{category.slug}"
-						class="nav-item"
-						class:active={$page.url.pathname.startsWith(`/category/${category.slug}`)}
-						>{category.name}</a
-					>
-				{/each}
-			{/await}
-		</nav>
+<header 
+    class="fixed w-full top-0 z-50 transition-all duration-300 {
+        scrollY > 100 || $page.url.pathname !== '/' 
+            ? 'bg-white/95 backdrop-blur-sm ' 
+            : 'bg-transparent'
+    }"
+>
+    <div class="max-w-[94rem] mx-auto px-6 h-16 flex items-center justify-between">
+        <!-- Logo -->
+        <a 
+            href="/" 
+            class="text-lg font-medium transition-colors {
+                scrollY > 100 || $page.url.pathname !== '/' ? 'text-black' : 'text-white'
+            }"
+        >
+            Abike & You
+        </a>
 
-		<!-- Secondary Nav -->
-		<nav class="md:flex items-center hidden space-x-5">
-			<div class="flex w-28 lg:w-36 bg-black/5 items-center rounded-full px-2">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="2.5"
-					stroke="currentColor"
-					height="25"
-					width="25"
-					class="nav-item"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-					/>
-				</svg>
-				<input
-					type="text"
-					placeholder="Search"
-					class="w-full rounded bg-transparent p-2 focus:outline-none text-black"
-				/>
-			</div>
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8">
+            {#await categories}
+                <div class="flex gap-6">
+                    {#each Array(3) as _}
+                        <div class="h-2 w-16 animate-pulse bg-neutral-200 rounded-full" />
+                    {/each}
+                </div>
+            {:then categories}
+                {#each categories as category}
+                    <a
+                        href="/category/{category.slug}"
+                        class="text-sm hover:text-neutral-500 transition-colors {
+                            scrollY > 100 || $page.url.pathname !== '/' ? 'text-black' : 'text-white'
+                        }"
+                        class:active={$page.url.pathname.startsWith(`/category/${category.slug}`)}
+                    >
+                        {category.name}
+                    </a>
+                {/each}
+            {/await}
+        </nav>
 
-			<a href="/favourites">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class=" md:w-5 md:h-5 lg:w-6 lg:h-6"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-					/>
-				</svg>
-			</a>
-			<a href="/cart" class="relative">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class=" md:w-5 md:h-5 lg:w-6 lg:h-6 nav-item"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-					/>
-				</svg>
-				<p class="absolute bg-epurple text-white text-sm -top-2 -right-3 rounded-full px-1.5">
-					{cartQuantity}
-				</p>
-			</a>
+        <!-- Desktop Actions -->
+        <div class="hidden md:flex items-center gap-6">
+            <!-- Search -->
+            <button class="hover:text-neutral-500 transition-colors {
+                scrollY > 100 || $page.url.pathname !== '/' ? 'text-black' : 'text-white'
+            }">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" 
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                </svg>
+            </button>
 
-			{#if $currentUser}
-				<Avatar />
-			{:else}
-				<a href="/auth/login">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke-width="1.5"
-						stroke="currentColor"
-						class=" md:w-5 md:h-5 lg:w-6 lg:h-6 nav-item"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-						/>
-					</svg>
-				</a>
-			{/if}
-		</nav>
+            <!-- Favorites -->
+            <a href="/favourites" class="hover:text-neutral-500 transition-colors {
+                scrollY > 100 || $page.url.pathname !== '/' ? 'text-black' : 'text-white'
+            }">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" 
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+            </a>
 
-		<!-- Mobile Nav Toggle -->
-		<nav class="md:hidden flex space-x-5 items-center">
-			<a href="/favourites">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="w-6 h-6"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-					/>
-				</svg>
-			</a>
-			<a href="/cart" class="relative">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="w-6 h-6 nav-item"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-					/>
-				</svg>
-				<p class="absolute bg-epurple text-white text-sm -top-2 -right-3 rounded-full px-1.5">
-					{cartQuantity}
-				</p>
-			</a>
-			<button on:click={toggle}>
-				<!-- For more settings use the AutoHTML plugin tab ... -->
-				<svg
-					class="nav-item"
-					width="24"
-					height="14"
-					viewBox="0 0 24 14"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M0.571289 0H23.4284V2.28571H0.571289V0ZM6.28557 5.71429H23.4284V8H6.28557V5.71429ZM13.4284 11.4286H23.4284V13.7143H13.4284V11.4286Z"
-						fill="#737373"
-					/>
-				</svg>
-			</button>
-		</nav>
-	</div>
-</div>
+            <!-- Cart -->
+            <a href="/cart" class="relative hover:text-neutral-500 transition-colors {
+                scrollY > 100 || $page.url.pathname !== '/' ? 'text-black' : 'text-white'
+            }">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" 
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                </svg>
+                {#if cartQuantity > 0}
+                    <span class="absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+                        {cartQuantity}
+                    </span>
+                {/if}
+            </a>
 
-{#if open}
-	<div
-		in:fly={{ x: -100, duration: 450, easing: cubicOut }}
-		out:fly={{ x: -100, duration: 450, easing: cubicIn }}
-		class="md:hidden fixed h-screen w-screen top-0 z-20 p-5 font-universo
-		{scrollY > 500 ? 'bg-white text-black' : 'bg-black text-white'}
-		"
-	>
-		<div class="flex justify-between items-center">
-			<a href="/">
-				<img src="/logo-white.svg" alt="logo" class="h-5 w-auto" />
-			</a>
+            <!-- Account -->
+            {#if $currentUser}
+                <Avatar />
+            {:else}
+                <a href="/auth/login" class="hover:text-neutral-500 transition-colors {
+                    scrollY > 100 || $page.url.pathname !== '/' ? 'text-black' : 'text-white'
+                }">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" 
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </a>
+            {/if}
+        </div>
 
-			<button on:click={toggle}>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="2"
-					stroke="currentColor"
-					class="w-6 h-6"
-				>
-					<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-				</svg>
-			</button>
-		</div>
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden {
+            scrollY > 100 || $page.url.pathname !== '/' ? 'text-black' : 'text-white'
+        }" on:click={toggle}>
+            {#if !open}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/>
+                    <line x1="4" x2="20" y1="18" y2="18"/>
+                </svg>
+            {:else}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                </svg>
+            {/if}
+        </button>
+    </div>
 
-		<div class="flex items-center space-x-2 mt-14">
-			<div class="
-				{
-	scrollY > 500 ? 'text-black bg-white' : 'text-white bg-transparent'
-			}
-			rounded flex items-center text-black px-2 w-full space-x-2">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 20 20"
-					fill="currentColor"
-					class="w-5 h-5"
-				>
-					<path
-						fill-rule="evenodd"
-						d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-						clip-rule="evenodd"
-					/>
-				</svg>
+    <!-- Mobile Menu -->
+    {#if open}
+        <div
+            in:fly={{ y: -20, duration: 200 }}
+            out:fly={{ y: -20, duration: 200 }}
+            class="absolute top-16 left-0 w-full bg-white border-b border-neutral-100"
+        >
+            <nav class="max-w-7xl mx-auto px-6 py-8 flex flex-col gap-6">
+                {#await categories}
+                    {#each Array(3) as _}
+                        <div class="h-3 w-24 animate-pulse bg-neutral-200 rounded-full" />
+                    {/each}
+                {:then categories}
+                    {#each categories as category}
+                        <a
+                            href="/category/{category.slug}"
+                            class="text-lg hover:text-neutral-500 transition-colors"
+                            class:active={$page.url.pathname.startsWith(`/category/${category.slug}`)}
+                        >
+                            {category.name}
+                        </a>
+                    {/each}
+                {/await}
 
-				<input
-					type="text"
-					class="w-full rounded bg-white p-2 focus:outline-none text-black"
-					placeholder="Search"
-				/>
-			</div>
-		</div>
-
-		<div class="flex flex-col justify-center items-start gap-10 text-4xl font-bold mt-28">
-			<a href="/" class="nav-item border-b w-full pb-2">Home</a>
-			<a href="/account" class="nav-item border-b w-full pb-2">Account</a>
-			{#await categories}
-				{#each [1, 2, 3] as _}
-					<div class="h-5 w-full animate-pulse bg-base-300 rounded-full" />
-				{/each}
-			{:then categories}
-				{#each categories as category}
-					<a
-						href="/category/{category.slug}"
-						class="nav-item border-b w-full pb-2"
-						class:active={$page.url.pathname.startsWith(`/category/${category.slug}`)}
-						>{category.name}</a
-					>
-				{/each}
-			{/await}
-			<!-- <a href="/" class="nav-item border-b w-full pb-2"
-				>T<span class="font-work-sans">-</span>Shirts</a
-			>
-			<a href="/" class="nav-item border-b w-full pb-2">Hoodies</a>
-			<a href="/" class="nav-item border-b w-full pb-2">Sweatshirts</a> -->
-			{#if $currentUser}
-				<form class="nav-item border-b w-full pb-2" action="/?/logout" method="post">
-					<button>Logout</button>
-				</form>
-			{:else}
-				<a href="/auth/login" class="nav-item border-b w-full pb-2">Login</a>
-			{/if}
-		</div>
-	</div>
-{/if}
+                <div class="h-px bg-neutral-200 my-2" />
+                
+                {#if $currentUser}
+                    <form action="/?/logout" method="post">
+                        <button class="text-lg hover:text-neutral-500 transition-colors">Logout</button>
+                    </form>
+                {:else}
+                    <a href="/auth/login" class="text-lg hover:text-neutral-500 transition-colors">Login</a>
+                {/if}
+            </nav>
+        </div>
+    {/if}
+</header>
 
 <style>
-	.nav-item {
-		text-align: left;
-	}
-
-	.nav-item.active {
-		color: #762ebb;
-		background-color: transparent;
-	}
+    .active {
+        color: #762ebb;
+		background-color: #fff;
+    }
 </style>

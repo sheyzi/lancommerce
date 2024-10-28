@@ -20,7 +20,7 @@
 	};
 </script>
 
-<div class="relative py-1 px-2 rounded-full bg-egreen/60">
+<div class="relative py-1 px-2 h-8 w-8 rounded-full bg-egreen/60">
 	<button on:click={toggleOptions} class=" flex items-center justify-center w-full h-full"
 		><span class="text-center text-sm"
 			>{$currentUser?.email[0].toUpperCase() || 'S'}{$currentUser?.email[1].toUpperCase() ||
