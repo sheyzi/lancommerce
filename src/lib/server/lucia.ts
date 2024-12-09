@@ -3,7 +3,7 @@ import { prisma as adapter } from '@lucia-auth/adapter-prisma';
 import prisma from './prisma';
 import { sveltekit } from 'lucia/middleware';
 import { dev } from '$app/environment';
-import * as argon2 from 'argon2';
+import * as argon from 'argon2';
 
 export const auth = lucia({
 	adapter: adapter(prisma, {
@@ -21,10 +21,10 @@ export const auth = lucia({
 	}),
 	passwordHash: {
 		generate(password) {
-			return argon2.hash(password);
+			return argon.hash(password);
 		},
 		validate(password, hash) {
-			return argon2.verify(hash, password);
+			return argon.verify(hash, password);
 		}
 	}
 });
