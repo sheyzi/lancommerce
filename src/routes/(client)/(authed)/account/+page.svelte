@@ -55,7 +55,7 @@
 	<title>Account - A & U</title>
 </svelte:head>
 
-<div class="min-w-screen min-h-screen md:flex">
+<div class="min-w-screen min-h-screen md:flex mt-10">
 	<aside class="md:h-screen md:w-fit sticky md:top-0 bg-white py-11">
 		<nav class="h-full min-w-[230px] grid grid-cols-1">
 			<ol class="list-none h-full w-full flex flex-col space-y-7 justify-center items-center">

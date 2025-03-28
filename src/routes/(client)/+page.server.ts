@@ -5,33 +5,57 @@ import prisma from '$lib/server/prisma';
 import { fetchUser } from '../../lib/server/helpers';
 
 export const load: PageServerLoad = async () => {
-	const products = await prisma.product.findMany({
-		where: {
-			variants: {
-				some: {
-					stock: {
-						gte: 0
-					}
+	const defaultWhereFilter = {
+		variants: {
+			some: {
+				stock: {
+					gte: 0
 				}
 			}
+		}
+	};
+
+	const include = {
+		category: true,
+		featuredImage: true,
+		variants: true
+	};
+
+	const products = await prisma.product.findMany({
+		where: {
+			...defaultWhereFilter
 		},
-		include: {
-			category: true,
-			featuredImage: true,
-			variants: true
-		},
+		include,
 		orderBy: {
 			createdAt: 'desc'
-		}
+		},
+		take: 12
+	});
+
+	const featuredProducts = await prisma.product.findMany({
+		where: {
+			AND: [
+				{ ...defaultWhereFilter },
+				{
+					isFeatured: true
+				}
+			]
+		},
+		include,
+		orderBy: {
+			createdAt: 'desc'
+		},
+		take: 4
 	});
 
 	return {
-		products
+		products,
+		featuredProducts
 	};
 };
 
 export const actions: Actions = {
-	logout: async ({ locals, cookies }) => {
+	logout: async ({ locals }) => {
 		const session = await locals.auth.validate();
 		if (!session) return fail(400);
 		await auth.invalidateSession(session.sessionId);

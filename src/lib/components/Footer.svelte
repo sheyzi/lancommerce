@@ -1,95 +1,74 @@
-<footer class="w-full grid grd-cols-1 relative bottom-0 bg-black/90 mt-20">
-	<section
-		class="max-w-[94rem] mx-auto px-5 md:px-10 py-16 w-full justify-between flex flex-wrap items-center md:flex-row gap-4 text-white"
-	>
+<footer class="w-full bg-neutral-900 mt-20 text-neutral-300 text-sm">
+	<section class="max-w-[94rem] mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
+	
 		<nav>
-			<ul class="uppercase">
-				<li><a href="/">Gift Cards</a></li>
-				<li><a href="/">Promotions</a></li>
-				<li><a href="/">Find a store</a></li>
-				<li><a href="/">Sign up for email</a></li>
-				<li><a href="/">Become a member</a></li>
-				<li><a href="/">A&U Journal</a></li>
-				<li><a href="/">Send us a feedback</a></li>
+			<h3 class="font-medium text-white mb-4">SHOP</h3>
+			<ul class="space-y-2 font-light">
+				<li><a href="/" class="hover:text-white transition-colors">Gift Cards</a></li>
+				<li><a href="/" class="hover:text-white transition-colors">Promotions</a></li>
+				<li><a href="/" class="hover:text-white transition-colors">Find a store</a></li>
+				<li><a href="/" class="hover:text-white transition-colors">Become a member</a></li>
+				<li><a href="/" class="hover:text-white transition-colors">A&U Journal</a></li>
 			</ul>
 		</nav>
+
 		<nav>
-			<ul class="">
-				<li><a href="/">GET HELP</a></li>
-				<li><a href="/">Order Status</a></li>
-				<li><a href="/">Shipping and Delivery</a></li>
-				<li><a href="/">Returns</a></li>
-				<li><a href="/">Payment Options</a></li>
-				<li><a href="/">Gift Card Balance</a></li>
-				<li><a href="/">Contact Us</a></li>
+			<h3 class="font-medium text-white mb-4">SUPPORT</h3>
+			<ul class="space-y-2 font-light">
+				<li><a href="/" class="hover:text-white transition-colors">Order Status</a></li>
+				<li><a href="/" class="hover:text-white transition-colors">Shipping</a></li>
+				<li><a href="/" class="hover:text-white transition-colors">Returns</a></li>
+				<li><a href="/" class="hover:text-white transition-colors">Payment Options</a></li>
+				<li><a href="/" class="hover:text-white transition-colors">Contact Us</a></li>
 			</ul>
 		</nav>
+
 		<nav>
-			<ul class="">
-				<li><a href="/">ABOUT A&U.</a></li>
-				<li><a href="/">News</a></li>
-				<li><a href="/">Careers</a></li>
-				<li><a href="/">Investors</a></li>
-				<li><a href="/">Purpose</a></li>
-				<li><a href="/">Sustainability</a></li>
+			<h3 class="font-medium text-white mb-4">ABOUT</h3>
+			<ul class="space-y-2 font-light">
+				<li><a href="/" class="hover:text-white transition-colors">News</a></li>
+				<li><a href="/" class="hover:text-white transition-colors">Careers</a></li>
+				<li><a href="/" class="hover:text-white transition-colors">Investors</a></li>
+				<li><a href="/" class="hover:text-white transition-colors">Sustainability</a></li>
 			</ul>
 		</nav>
-		<section class="w-full md:w-auto">
-			<form class="w-full" action="">
-				<div class="flex flex-col gap-3 w-full">
-					<label for="email">Subscribe to our newsletter</label>
-					<div class="flex gap-0 w-full">
-						<input
-							class="py-1.5 px-3 w-full"
-							placeholder="Email here"
-							type="email"
-							name="email"
-							id="email"
-						/>
-						<button class="bg-egreen py-1.5 px-2 text-black font-light">Subscribe</button>
-					</div>
-				</div>
+
+		<section>
+			<h3 class="font-medium text-white mb-4">NEWSLETTER</h3>
+			<form class="space-y-3">
+				<input
+					type="email"
+					placeholder="Enter your email"
+					class="w-full bg-neutral-800 px-4 py-2 rounded-sm focus:outline-none focus:ring-1 focus:ring-neutral-600"
+				/>
+				<button class="w-full bg-white text-black py-2 rounded-sm hover:bg-neutral-200 transition-colors">
+					Subscribe
+				</button>
 			</form>
 		</section>
 	</section>
-	<section class="w-full bg-black py-3">
-		<div
-			class=" mx-auto px-5 md:px-10 max-w-[94rem] flex flex-col md:flex-row gap-2 items-center justify-between w-full"
-		>
-			<nav class=" text-white flex items-center gap-3">
-				<li class="list-none">
-					<a href="">
-						<iconify-icon width="25" icon="ion:logo-instagram-outline" />
-					</a>
-				</li>
-				<li class="list-none">
-					<a href="">
-						<iconify-icon width="25" icon="ic:outline-facebook" />
-					</a>
-				</li>
-				<li class="list-none">
-					<a href="">
-						<iconify-icon width="25" icon="ion:logo-twitter-outline" />
-					</a>
-				</li>
-			</nav>
-			<nav class="flex gap-1 md:gap-3 items-center">
-				<li class="list-none">
-					<a class="bg-white flex items-center py-1 px-5" href=""
-						><iconify-icon icon="logos:google-pay" /></a
-					>
-				</li>
-				<li class="list-none">
-					<a class="bg-white flex items-center py-1 px-6" href=""
-						><iconify-icon icon="logos:mastercard" /></a
-					>
-				</li>
-				<li class="list-none">
-					<a class="bg-white flex items-center py-1 px-5" href=""
-						><iconify-icon icon="logos:visa" /></a
-					>
-				</li>
-			</nav>
+
+	<section class="border-t border-neutral-800">
+		<div class="max-w-[94rem] mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+			
+			<div class="flex gap-6">
+				<a href="/" class="hover:text-white transition-colors">
+					<iconify-icon width="20" icon="ion:logo-instagram-outline" />
+				</a>
+				<a href="/" class="hover:text-white transition-colors">
+					<iconify-icon width="20" icon="ic:outline-facebook" />
+				</a>
+				<a href="/" class="hover:text-white transition-colors">
+					<iconify-icon width="20" icon="ion:logo-twitter-outline" />
+				</a>
+			</div>
+
+			
+			<div class="flex gap-4">
+				<iconify-icon width="32" icon="logos:google-pay" />
+				<iconify-icon width="32" icon="logos:mastercard" />
+				<iconify-icon width="32" icon="logos:visa" />
+			</div>
 		</div>
 	</section>
 </footer>

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Hero from '$lib/components/Hero.svelte';
-	import LatestProducts from '$lib/components/LatestProducts.svelte';
-	import ProductCard from '$lib/components/ProductCard.svelte';
+	import ProductsList from '$lib/components/ProductsList.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
 	let products = data.products;
+	let featuredProducts = data.featuredProducts;
 </script>
 
 <svelte:head>
@@ -15,9 +15,10 @@
 </svelte:head>
 
 <Hero />
-<LatestProducts title="Featured Products" {products} />
-<LatestProducts title="Latest Products" {products} />
-
+<section class="w-full">
+	<ProductsList title="Featured Products" products={featuredProducts} />
+	<ProductsList title="Latest Products" {products} />
+</section>
 
 <style>
 </style>
